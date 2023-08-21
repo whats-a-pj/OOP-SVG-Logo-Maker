@@ -43,8 +43,8 @@ function writeToFile() {
     return inquirer.prompt(questions)
     .then((questions) => {
         console.log(questions)
-        //this is creating a  and is grabbing the user's input to fill in the empty space
-        fs.writeFile("README.md", `
+        //this is creating a new svg file and is grabbing the user's input to fill in the empty space
+        fs.writeFile("./examples/logo.svg", `
 ${questions.logoName}
 ${questions.txtColor}
 ${questions.shapes}
@@ -52,10 +52,10 @@ ${questions.shapeColor}
         `,
         //this is creating a catch incase things go wrong while using this application- shouldn't happen though lol
         (err) =>
-          err ? console.log(err) : console.log('Your README.md file was created!')
+          err ? console.log(err) : console.log('Your SVG file was created!')
         );
       });
 };
 
 //this calls the above function
-writeToFile(`./examples/logo.svg`, writeToFile());
+writeToFile();
