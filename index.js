@@ -1,7 +1,7 @@
 //invokes inquirer
 const inquirer = require('inquirer');
-const shapeMaker = require('./lib/shapes.js');
-const renderSVG = require('./lib/rendersvg.js')
+const ShapeFile = require('./lib/shapes.js');
+const RenderSVGFile = require('./lib/rendersvg.js')
 //fs is for 'file system'
 const fs = require('fs');
 
@@ -14,9 +14,9 @@ const questions = [
         message: 'Choose three letters to add to your SVG logo'
     },
     {
-        type: 'editor',
+        type: 'input',
         name: 'txtColor',
-        message: 'Choose a text color, you can enter a color keyword or a hexadecimal value **When you are ready to save; press esc, type :wq and press enter'
+        message: 'Choose a text color, you can enter a color keyword or a hexadecimal value'
     },
     {
         type: 'checkbox',
@@ -33,9 +33,9 @@ const questions = [
         }]
     },
     {
-        type: 'editor',
+        type: 'input',
         name: 'shapeColor',
-        message: 'Choose a color for the shape, you can enter a color keyword or a hexadecimal value **When you are ready to save; press esc, type :wq and press enter'
+        message: 'Choose a color for the shape, you can enter a color keyword or a hexadecimal value'
     },
 ];
 
@@ -47,7 +47,7 @@ function writeToFile() {
         console.log(questions)
         //this is creating a new svg file and is grabbing the user's input to fill in the empty space
         fs.writeFile("./examples/logo.svg", `
-${shapeMaker}
+${RenderSVGFile} ${ShapeFile}
         `,
         //this is creating a catch incase things go wrong while using this application- shouldn't happen though lol
         (err) =>
