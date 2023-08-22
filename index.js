@@ -1,5 +1,7 @@
 //invokes inquirer
 const inquirer = require('inquirer');
+const shapeMaker = require('./lib/shapes.js');
+const renderSVG = require('./lib/rendersvg.js')
 //fs is for 'file system'
 const fs = require('fs');
 
@@ -41,14 +43,11 @@ const questions = [
 function writeToFile() {
     //this makes it so that when you type node index.js into the terminal the questions prompt the user
     return inquirer.prompt(questions)
-    .then((questions) => {
+    .then(({logoName, txtColor, shapes, shapeColor}) => {
         console.log(questions)
         //this is creating a new svg file and is grabbing the user's input to fill in the empty space
         fs.writeFile("./examples/logo.svg", `
-${questions.logoName}
-${questions.txtColor}
-${questions.shapes}
-${questions.shapeColor}
+${shapeMaker}
         `,
         //this is creating a catch incase things go wrong while using this application- shouldn't happen though lol
         (err) =>
