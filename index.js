@@ -1,6 +1,6 @@
 //invokes inquirer
 const inquirer = require('inquirer');
-const ShapeFile = require('./lib/shapes.js');
+const {Shapes, Circle, Triangle, Square} = require('./lib/shapes.js');
 const RenderSVGFile = require('./lib/rendersvg.js')
 //fs is for 'file system'
 const fs = require('fs');
@@ -39,22 +39,36 @@ const questions = [
     },
 ];
 
-//writeToFile() doing exactly what it sounds to!
+//writeToFile() is self-explanatory
 function writeToFile() {
     //this makes it so that when you type node index.js into the terminal the questions prompt the user
     return inquirer.prompt(questions)
-    .then(({logoName, txtColor, shapes, shapeColor}) => {
+    .then(({logoName, txtColor, shapes, shapeColor}) => { //Shapes, RenderSVGFile
         console.log(questions)
+
+        // const newShape = new Shapes (
+        //     this.shapes,
+        //     this.shapeColor
+        // );
+        // const newRender = new RenderSVGFile (
+        //     this.txtColor,
+        //     this.logoName
+        //
+        // ); OR WOULD I DO IT LIKE THIS
+        // const circle = new Circle(shapeColor, shapes)
+        //      circle.render()
+
         //this is creating a new svg file and is grabbing the user's input to fill in the empty space
         fs.writeFile("./examples/logo.svg", `
-${RenderSVGFile} ${ShapeFile}
+        <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">${shapes} fill="${shapeColor}"/><text x="100" y="115" font-size="60" text-anchor="middle" fill="${txtColor}">${logoName}</text></svg>
         `,
-        //this is creating a catch incase things go wrong while using this application- shouldn't happen though lol
+        //this is creating a catch incase things go wrong
         (err) =>
           err ? console.log(err) : console.log('Your SVG file was created!')
         );
       });
 };
+
 
 //this calls the above function
 writeToFile();
