@@ -22,6 +22,7 @@ For further guidance on using this CLI application, watch this walk through vide
 <details>
 <summary> Walkthrough Video </summary>
 
+https://watch.screencastify.com/v/UOVaMfd55QJyzrM6hHke
 
 </details>
 
