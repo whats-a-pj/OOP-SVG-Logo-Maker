@@ -8,7 +8,7 @@ const {Circle, Triangle, Square} = require('./lib/shapes.js');
 const fs = require('fs');
 
 
-//this is an array of questions set up based on inquirer docs
+//this is an array of questions set up based on inquirer docs examples
 const questions = [
     {
         type: 'input',
@@ -64,7 +64,7 @@ if (shapes == 'Square') {
         <text x="100" y="115" font-size="60" text-anchor="middle" fill="${txtColor}">${logoName}</text>
         </svg>
         `,
-        //this is creating a catch incase things go wrong
+        //this is creating a catch incase things go wrong, and console.logs when things go right!
         (err) =>
           err ? console.log(err) : console.log('Your SVG file was created!')
         );
